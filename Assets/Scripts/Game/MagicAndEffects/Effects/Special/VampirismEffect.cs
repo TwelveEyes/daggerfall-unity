@@ -5,7 +5,7 @@
 // Source Code:     https://github.com/Interkarma/daggerfall-unity
 // Original Author: Gavin Clayton (interkarma@dfworkshop.net)
 // Contributors:    Allofich, Hazelnut
-// 
+//
 // Notes:
 //
 
@@ -191,7 +191,7 @@ namespace DaggerfallWorkshop.Game.MagicAndEffects.MagicEffects
 
         public override bool CheckFastTravel(PlayerEntity playerEntity)
         {
-            if (DaggerfallUnity.Instance.WorldTime.Now.IsDay)
+            if (DaggerfallUnity.Instance.WorldTime.Now.IsDay && !DaggerfallUnity.Settings.EnableVampireDaylightFastTravel)
             {
                 DaggerfallMessageBox mb = new DaggerfallMessageBox(DaggerfallUI.Instance.UserInterfaceManager);
                 mb.PreviousWindow = DaggerfallUI.Instance.UserInterfaceManager.TopWindow;
