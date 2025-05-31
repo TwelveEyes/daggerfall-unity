@@ -4,8 +4,8 @@
 // License:         MIT License (http://www.opensource.org/licenses/mit-license.php)
 // Source Code:     https://github.com/Interkarma/daggerfall-unity
 // Original Author: Gavin Clayton (interkarma@dfworkshop.net)
-// Contributors:    
-// 
+// Contributors:
+//
 // Notes:
 //
 
@@ -400,7 +400,7 @@ namespace DaggerfallWorkshop.Game.MagicAndEffects.MagicEffects
             }
 
             // Was that innocent killed?
-            if (isInnocent && targetEntity.CurrentHealth <= 0)
+            if ((isInnocent || DaggerfallUnity.Settings.EnableLycanthropeSatedByAnyKill) && targetEntity.CurrentHealth <= 0)
                 return true;
 
             return false;
@@ -461,7 +461,7 @@ namespace DaggerfallWorkshop.Game.MagicAndEffects.MagicEffects
         public void UpdateSatiation()
         {
             // Store time sated
-            lastKilledInnocent = DaggerfallUnity.Instance.WorldTime.DaggerfallDateTime.ToClassicDaggerfallTime();  
+            lastKilledInnocent = DaggerfallUnity.Instance.WorldTime.DaggerfallDateTime.ToClassicDaggerfallTime();
 
             // Reset need to kill timer to 0 so player is notified immediately next time
             needToKillNotifyTimer = 0;

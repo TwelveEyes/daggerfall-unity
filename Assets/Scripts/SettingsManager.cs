@@ -341,6 +341,7 @@ namespace DaggerfallWorkshop
         public bool GuildQuestListBox { get; set; }
         public bool BowLeftHandWithSwitching { get; set; }
         public int LoiterLimitInHours { get; set; }
+        public bool EnableLycanthropeSatedByAnyKill { get; set; }
         public bool EnableVampireDaylightFastTravel { get; set; }
 
         #endregion
@@ -574,6 +575,7 @@ namespace DaggerfallWorkshop
             GuildQuestListBox = GetBool(sectionEnhancements, "GuildQuestListBox");
             BowLeftHandWithSwitching = GetBool(sectionEnhancements, "BowLeftHandWithSwitching");
             LoiterLimitInHours = GetInt(sectionEnhancements, "LoiterLimitInHours");
+            EnableLycanthropeSatedByAnyKill = GetBool(sectionEnhancements, "EnableLycanthropeSatedByAnyKill");
             EnableVampireDaylightFastTravel = GetBool(sectionEnhancements, "EnableVampireDaylightFastTravel");
         }
 
@@ -767,6 +769,7 @@ namespace DaggerfallWorkshop
             SetBool(sectionEnhancements, "GuildQuestListBox", GuildQuestListBox);
             SetBool(sectionEnhancements, "BowLeftHandWithSwitching", BowLeftHandWithSwitching);
             SetInt(sectionEnhancements, "LoiterLimitInHours", LoiterLimitInHours);
+            SetBool(sectionEnhancements, "EnableLycanthropeSatedByAnyKill", EnableLycanthropeSatedByAnyKill);
             SetBool(sectionEnhancements, "EnableVampireDaylightFastTravel", EnableVampireDaylightFastTravel);
 
             // Write settings to persistent file
