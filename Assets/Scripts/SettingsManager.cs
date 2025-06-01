@@ -343,6 +343,7 @@ namespace DaggerfallWorkshop
         public int LoiterLimitInHours { get; set; }
         public bool EnableLycanthropeSatedByAnyKill { get; set; }
         public bool EnableVampireDaylightFastTravel { get; set; }
+        public bool EnableVampireArrivalBeforeDawn { get; set; }
 
         #endregion
 
@@ -577,6 +578,7 @@ namespace DaggerfallWorkshop
             LoiterLimitInHours = GetInt(sectionEnhancements, "LoiterLimitInHours");
             EnableLycanthropeSatedByAnyKill = GetBool(sectionEnhancements, "EnableLycanthropeSatedByAnyKill");
             EnableVampireDaylightFastTravel = GetBool(sectionEnhancements, "EnableVampireDaylightFastTravel");
+            EnableVampireArrivalBeforeDawn = GetBool(sectionEnhancements, "EnableVampireArrivalBeforeDawn");
         }
 
         /// <summary>
@@ -771,6 +773,7 @@ namespace DaggerfallWorkshop
             SetInt(sectionEnhancements, "LoiterLimitInHours", LoiterLimitInHours);
             SetBool(sectionEnhancements, "EnableLycanthropeSatedByAnyKill", EnableLycanthropeSatedByAnyKill);
             SetBool(sectionEnhancements, "EnableVampireDaylightFastTravel", EnableVampireDaylightFastTravel);
+            SetBool(sectionEnhancements, "EnableVampireArrivalBeforeDawn", EnableVampireArrivalBeforeDawn);
 
             // Write settings to persistent file
             WriteSettingsFile();
