@@ -190,3 +190,6 @@ EnhancedCombatAI=True
 GuildQuestListBox=False
 BowLeftHandWithSwitching=False
 LoiterLimitInHours=3
+EnableLycanthropeSatedByAnyKill=False
+EnableVampireDaylightFastTravel=False
+EnableVampireArrivalBeforeDawn=False

@@ -4,8 +4,8 @@
 // License:         MIT License (http://www.opensource.org/licenses/mit-license.php)
 // Source Code:     https://github.com/Interkarma/daggerfall-unity
 // Original Author: Lypyl (lypyl@dfworkshop.net)
-// Contributors:    
-// 
+// Contributors:
+//
 // Notes:
 //
 
@@ -347,10 +347,30 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
             GameManager.Instance.PlayerEntity.PreventEnemySpawns = true;
 
             // Vampires and characters with Damage from Sunlight disadvantage never arrive between 6am and 6pm regardless of travel type
+            // Unless EnableVampireArrivalBeforeDawn is true, then raise arrival time to 5:30am if travel would arrive at night
             // Otherwise raise arrival time to just after 7am if cautious travel would arrive at night
             if (GameManager.Instance.PlayerEffectManager.HasVampirism() || GameManager.Instance.PlayerEntity.Career.DamageFromSunlight)
             {
-                if (DaggerfallUnity.Instance.WorldTime.DaggerfallDateTime.IsDay)
+                if (DaggerfallUnity.Settings.EnableVampireArrivalBeforeDawn)
+                {
+                    if ((DaggerfallUnity.WorldTime.DaggerfallDateTime.Hour < 5)
+                        || ((DaggerfallUnity.WorldTime.DaggerfallDateTime.Hour == 5) && (DaggerfallUnity.WorldTime.DaggerfallDateTime.Minute < 30)))
+                    {
+                        float raiseTime = (((5 - DaggerfallUnity.WorldTime.DaggerfallDateTime.Hour) * 3600)
+                                            + ((30 - DaggerfallUnity.WorldTime.DaggerfallDateTime.Minute) * 60)
+                                            - DaggerfallUnity.WorldTime.DaggerfallDateTime.Second);
+                        DaggerfallUnity.WorldTime.DaggerfallDateTime.RaiseTime(raiseTime);
+                    }
+                    else if ((DaggerfallUnity.WorldTime.DaggerfallDateTime.Hour > 5)
+                        || ((DaggerfallUnity.WorldTime.DaggerfallDateTime.Hour == 5) && (DaggerfallUnity.WorldTime.DaggerfallDateTime.Minute > 30)))
+                    {
+                        float raiseTime = (((29 - DaggerfallUnity.WorldTime.DaggerfallDateTime.Hour) * 3600)
+                                            + ((30 - DaggerfallUnity.WorldTime.DaggerfallDateTime.Minute) * 60)
+                                            - DaggerfallUnity.WorldTime.DaggerfallDateTime.Second);
+                        DaggerfallUnity.WorldTime.DaggerfallDateTime.RaiseTime(raiseTime);
+                    }
+                }
+                else if (DaggerfallUnity.Instance.WorldTime.DaggerfallDateTime.IsDay)
                 {
                     DaggerfallUnity.Instance.WorldTime.DaggerfallDateTime.RaiseTime(
                         (DaggerfallDateTime.DuskHour - DaggerfallUnity.Instance.WorldTime.DaggerfallDateTime.Hour) * 3600);
@@ -369,8 +389,8 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
                 else if (DaggerfallUnity.WorldTime.DaggerfallDateTime.Hour > 17)
                 {
                     float raiseTime = (((31 - DaggerfallUnity.WorldTime.DaggerfallDateTime.Hour) * 3600)
-                    + ((10 - DaggerfallUnity.WorldTime.DaggerfallDateTime.Minute) * 60)
-                    - DaggerfallUnity.WorldTime.DaggerfallDateTime.Second);
+                                        + ((10 - DaggerfallUnity.WorldTime.DaggerfallDateTime.Minute) * 60)
+                                        - DaggerfallUnity.WorldTime.DaggerfallDateTime.Second);
                     DaggerfallUnity.WorldTime.DaggerfallDateTime.RaiseTime(raiseTime);
                 }
             }
@@ -462,7 +482,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
                 showNotEnoughGoldPopup();
                 return;
             }
-            
+
             doFastTravel = true; // initiate fast travel (Update() function will perform fast travel when this flag is true)
         }
 

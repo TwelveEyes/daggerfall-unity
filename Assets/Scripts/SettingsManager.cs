@@ -4,8 +4,8 @@
 // License:         MIT License (http://www.opensource.org/licenses/mit-license.php)
 // Source Code:     https://github.com/Interkarma/daggerfall-unity
 // Original Author: Gavin Clayton (interkarma@dfworkshop.net)
-// Contributors:    
-// 
+// Contributors:
+//
 // Notes:
 //
 
@@ -341,6 +341,9 @@ namespace DaggerfallWorkshop
         public bool GuildQuestListBox { get; set; }
         public bool BowLeftHandWithSwitching { get; set; }
         public int LoiterLimitInHours { get; set; }
+        public bool EnableLycanthropeSatedByAnyKill { get; set; }
+        public bool EnableVampireDaylightFastTravel { get; set; }
+        public bool EnableVampireArrivalBeforeDawn { get; set; }
 
         #endregion
 
@@ -484,7 +487,7 @@ namespace DaggerfallWorkshop
             EnableEnhancedItemLists = GetBool(sectionGUI, "EnableEnhancedItemLists");
             EnableModernConversationStyleInTalkWindow = GetBool(sectionGUI, "EnableModernConversationStyleInTalkWindow");
             IconsPositioningScheme = GetString(sectionGUI, "IconsPositioningScheme");
-            HelmAndShieldMaterialDisplay = GetInt(sectionGUI, "HelmAndShieldMaterialDisplay", 0, 3);            
+            HelmAndShieldMaterialDisplay = GetInt(sectionGUI, "HelmAndShieldMaterialDisplay", 0, 3);
             ShopQualityPresentation = GetInt(sectionGUI, "ShopQualityPresentation", 0, 2);
             ShopQualityHUDDelay = GetInt(sectionGUI, "ShopQualityHUDDelay", 1, 10);
             ShowQuestJournalClocksAsCountdown = GetBool(sectionGUI, "ShowQuestJournalClocksAsCountdown");
@@ -536,7 +539,7 @@ namespace DaggerfallWorkshop
             AutomapNumberOfDungeons = GetInt(sectionMap, "AutomapNumberOfDungeons", 0, 100);
             AutomapDisableMicroMap = GetBool(sectionMap, "AutomapDisableMicroMap");
             AutomapRememberSliceLevel = GetBool(sectionMap, "AutomapRememberSliceLevel");
-            AutomapAlwaysMaxOutSliceLevel = GetBool(sectionMap, "AutomapAlwaysMaxOutSliceLevel");            
+            AutomapAlwaysMaxOutSliceLevel = GetBool(sectionMap, "AutomapAlwaysMaxOutSliceLevel");
             ExteriorMapDefaultZoomLevel = GetFloat(sectionMap, "ExteriorMapDefaultZoomLevel", 4, 31);
             ExteriorMapResetZoomLevelOnNewLocation = GetBool(sectionMap, "ExteriorMapResetZoomLevelOnNewLocation");
             AutomapTempleColor = GetColor(sectionMap, "AutomapTempleColor", DaggerfallUI.DaggerfallDefaultTempleAutomapColor);
@@ -573,6 +576,9 @@ namespace DaggerfallWorkshop
             GuildQuestListBox = GetBool(sectionEnhancements, "GuildQuestListBox");
             BowLeftHandWithSwitching = GetBool(sectionEnhancements, "BowLeftHandWithSwitching");
             LoiterLimitInHours = GetInt(sectionEnhancements, "LoiterLimitInHours");
+            EnableLycanthropeSatedByAnyKill = GetBool(sectionEnhancements, "EnableLycanthropeSatedByAnyKill");
+            EnableVampireDaylightFastTravel = GetBool(sectionEnhancements, "EnableVampireDaylightFastTravel");
+            EnableVampireArrivalBeforeDawn = GetBool(sectionEnhancements, "EnableVampireArrivalBeforeDawn");
         }
 
         /// <summary>
@@ -765,6 +771,9 @@ namespace DaggerfallWorkshop
             SetBool(sectionEnhancements, "GuildQuestListBox", GuildQuestListBox);
             SetBool(sectionEnhancements, "BowLeftHandWithSwitching", BowLeftHandWithSwitching);
             SetInt(sectionEnhancements, "LoiterLimitInHours", LoiterLimitInHours);
+            SetBool(sectionEnhancements, "EnableLycanthropeSatedByAnyKill", EnableLycanthropeSatedByAnyKill);
+            SetBool(sectionEnhancements, "EnableVampireDaylightFastTravel", EnableVampireDaylightFastTravel);
+            SetBool(sectionEnhancements, "EnableVampireArrivalBeforeDawn", EnableVampireArrivalBeforeDawn);
 
             // Write settings to persistent file
             WriteSettingsFile();
